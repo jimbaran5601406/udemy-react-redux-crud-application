@@ -1,41 +1,32 @@
 // jsxで記述する際にトランスコンパイルする関係でReactをimportする必要がある。
 import React, { Component } from "react";
 
-// Componentクラスを継承してAppクラスを定義しているのでクラスコンポーネントと呼ばれる。
-//class App extends Component {
-//render() {
-//const dom = "Variable!";
-//return (
-// returnで返すのは一つのブロックのみ
-// ブロックをdivで囲ってしまうとWebページに意味のないdivタグが挿入れてしまうのでReact.Fragmentタグを使用する。
-//<React.Fragment>
-//<h1>Hello, {dom}!</h1>
-//<label htmlFor="bar">bar</label>
-//{/* 場所によって異なるコメントアウト */}
-//<input
-//type="text"
-//onClick={() => {
-//console.log("I am clicked.");
-//}}
-//>
-//</React.Fragment>
-//);
-//}
-//}
-
 const App = () => {
+  const profiles = [
+    { name: "Taro", age: 20 },
+    { name: "Hanako", age: 20 },
+    { name: "Hanako" },
+  ];
+
   return (
     <div>
-      <Cat />
-      <Cat />
-      <Cat />
-      <Cat />
+      {profiles.map((profile) => {
+        return <User name={profile.name} age={profile.age} />;
+      })}
     </div>
   );
 };
 
-const Cat = () => {
-  return <div>Meow!</div>;
+const User = (props) => {
+  return (
+    <div>
+      Hi, I am {props.name} and {props.age} years old!
+    </div>
+  );
 };
 
+// Userコンポーネントのprops.ageに設定される値がない場合はデフォルトの値がセットされる。
+User.defaultProps = {
+  age: 1,
+};
 export default App;
