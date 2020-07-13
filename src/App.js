@@ -6,6 +6,7 @@ class App extends Component {
     const dom = "Variable!";
     return (
       // returnで返すのは一つのブロックのみ
+      // ブロックをdivで囲ってしまうとWebページに意味のないdivタグが挿入れてしまうのでReact.Fragmentタグを使用する。
       <React.Fragment>
         <h1>Hello, {dom}!</h1>
         <label htmlFor="bar">bar</label>
