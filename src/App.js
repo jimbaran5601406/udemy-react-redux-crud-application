@@ -1,33 +1,36 @@
 import React, { Component } from "react";
-// バリデーション実装
-import PropTypes from "prop-types";
 
-const App = () => {
-  const profiles = [
-    { name: "Taro", age: 20 },
-    { name: "Hanako", age: 20 },
-    { name: "Hanako", age: 3 },
-  ];
+// 呼び出し元
+const App = () => <Counter></Counter>;
+// クラスコンポーネントの場合のみrender関数が必要
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    console.log(this.state);
+    this.state = { count: 0 };
+  }
 
-  return (
-    <div>
-      {profiles.map((profile) => {
-        return <User name={profile.name} age={profile.age} />;
-      })}
-    </div>
-  );
-};
+  handlePlusButton = () => {
+    // 直接状態を操作することは禁止
+    // this.state = { count: this.state.count};
+    this.setState({ count: this.state.count + 1 });
+  };
 
-const User = (props) => {
-  return (
-    <div>
-      Hi, I am {props.name} and {props.age} years old!
-    </div>
-  );
-};
+  handleMinusButton = () => {
+    this.setState({ count: this.state.count - 1 });
+  };
 
-User.propsTypes = {
-  name: PropTypes.string,
-  age: PropTypes.number.isRequired,
-};
+  render() {
+    // setState();を実行したあとにrender();も実行される。
+    console.log("render");
+    return (
+      <React.Fragment>
+        <div>count: {this.state.count}</div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinusButton}>-1</button>
+      </React.Fragment>
+    );
+  }
+}
+
 export default App;
