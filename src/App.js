@@ -1,11 +1,12 @@
-// jsxで記述する際にトランスコンパイルする関係でReactをimportする必要がある。
 import React, { Component } from "react";
+// バリデーション実装
+import PropTypes from "prop-types";
 
 const App = () => {
   const profiles = [
     { name: "Taro", age: 20 },
     { name: "Hanako", age: 20 },
-    { name: "Hanako" },
+    { name: "Hanako", age: 3 },
   ];
 
   return (
@@ -25,8 +26,8 @@ const User = (props) => {
   );
 };
 
-// Userコンポーネントのprops.ageに設定される値がない場合はデフォルトの値がセットされる。
-User.defaultProps = {
-  age: 1,
+User.propsTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number.isRequired,
 };
 export default App;
