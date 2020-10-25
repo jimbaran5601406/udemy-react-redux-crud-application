@@ -1,18 +1,19 @@
-import React, { Component } from "react";
-import { Container } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+import React from "react";
+import Container from "@material-ui/core/Container";
+import Alert from "@material-ui/lab/Alert";
 
 const App = () => {
 	const profiles = [
-		{ name: "Taro", age: 20 },
-		{ name: "", age: "" }
+		{ name: "Material", age: 20 },
+		{},
+		{ name: "Alert", age: 24 }
 	];
 
 	return (
 		<Container>
-			{profiles.map((profile) => {
+			{profiles.map((profile, index) => {
 				return (
-					<Alert severity="success">
+					<Alert severity="success" key={index}>
 						<Human name={profile.name} age={profile.age} />
 					</Alert>
 				);
@@ -31,7 +32,7 @@ const Human = (props) => {
 
 Human.defaultProps = {
 	name: "Anonymous",
-	age: 100
+	age: 1000
 };
 
 export default App;
