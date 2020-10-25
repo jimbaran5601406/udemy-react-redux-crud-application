@@ -1,32 +1,37 @@
-// jsxで記述する際にトランスコンパイルする関係でReactをimportする必要がある。
 import React, { Component } from "react";
+import { Container } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 
 const App = () => {
-  const profiles = [
-    { name: "Taro", age: 20 },
-    { name: "Hanako", age: 20 },
-    { name: "Hanako" },
-  ];
+	const profiles = [
+		{ name: "Taro", age: 20 },
+		{ name: "", age: "" }
+	];
 
-  return (
-    <div>
-      {profiles.map((profile) => {
-        return <User name={profile.name} age={profile.age} />;
-      })}
-    </div>
-  );
+	return (
+		<Container>
+			{profiles.map((profile) => {
+				return (
+					<Alert severity="success">
+						<Human name={profile.name} age={profile.age} />
+					</Alert>
+				);
+			})}
+		</Container>
+	);
 };
 
-const User = (props) => {
-  return (
-    <div>
-      Hi, I am {props.name} and {props.age} years old!
-    </div>
-  );
+const Human = (props) => {
+	return (
+		<div>
+			Good morning, I'm {props.name} and {props.age} year-old.
+		</div>
+	);
 };
 
-// Userコンポーネントのprops.ageに設定される値がない場合はデフォルトの値がセットされる。
-User.defaultProps = {
-  age: 1,
+Human.defaultProps = {
+	name: "Anonymous",
+	age: 100
 };
+
 export default App;
