@@ -9,3 +9,5 @@ export default (state = {}, action) => {
 			return state;
 	}
 };
+
+// reducerはstateの更新
