@@ -23,7 +23,7 @@ export const postEvent = (values) => async (dispatch) => {
 
 // イベント削除
 export const deleteEvent = (id) => async (dispatch) => {
-	await axios.delete(`${ROOT_URL}/events${id}${QUERYSTRING}`);
+	await axios.delete(`${ROOT_URL}/events/${id}${QUERYSTRING}`);
 	dispatch({ type: DELETE_EVENT, id });
 };
 // typeはreducerがactionの識別子

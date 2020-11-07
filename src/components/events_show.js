@@ -75,8 +75,6 @@ class EventsShow extends Component {
 	}
 }
 
-const mapDispatchToProps = { deleteEvent };
-
 const validate = (values) => {
 	const errors = {};
 
@@ -88,6 +86,8 @@ const validate = (values) => {
 	}
 	return errors;
 };
+
+const mapDispatchToProps = { deleteEvent };
 
 export default connect(
 	null,

@@ -6,9 +6,8 @@ export default (events = {}, action) => {
 		case READ_EVENTS:
 			return _.mapKeys(action.response.data, "id");
 		case DELETE_EVENT:
-			console.log(action.id);
 			delete events[action.id];
-			return { ...events };
+			return events;
 		default:
 			return events;
 	}
