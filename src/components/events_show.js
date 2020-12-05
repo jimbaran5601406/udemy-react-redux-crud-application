@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 import { getEvent, deleteEvent, putEvent } from "../actions";
 
@@ -26,10 +28,15 @@ class EventsShow extends Component {
 			meta: { touched, error }
 		} = field;
 		return (
-			<div>
-				<input {...input} placeholder={label} type={type} />
-				{touched && error && <span>{error}</span>}
-			</div>
+			<TextField
+				name={name}
+				type={type}
+				label={label}
+				{...input}
+				error={touched && error}
+				helperText={touched && error}
+				fullWidth={true}
+			/>
 		);
 	}
 
@@ -46,6 +53,8 @@ class EventsShow extends Component {
 
 	render() {
 		const { handleSubmit, pristine, submitting, invalid } = this.props;
+		const buttonStyle = { margin: 12 };
+		const linkStyle = { textDecoration: "none", color: "#000000" };
 
 		return (
 			<form onSubmit={handleSubmit(this.onSubmit)}>
@@ -65,15 +74,25 @@ class EventsShow extends Component {
 				</div>
 
 				<div>
-					<input
+					<Button
 						type="submit"
-						value="Submit"
 						disabled={pristine || submitting || invalid}
-					/>
-					<Link to="/">Cancel</Link>
-					<Link to="/" onClick={this.onDeleteClick}>
-						Delete
-					</Link>
+						variant="contained"
+						color="primary"
+						style={buttonStyle}
+					>
+						Submit
+					</Button>
+					<Button variant="contained" style={buttonStyle}>
+						<Link to="/" style={linkStyle}>
+							Cancel
+						</Link>
+					</Button>
+					<Button variant="contained" color="secondary" style={buttonStyle}>
+						<Link to="/" onClick={this.onDeleteClick} style={linkStyle}>
+							Delete
+						</Link>
+					</Button>
 				</div>
 			</form>
 		);
