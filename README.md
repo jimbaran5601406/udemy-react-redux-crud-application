@@ -4,3 +4,7 @@
 
 ## 公開URL
 http://udemy-react-redux-crud-app.webdeveloperkei.xyz/
+
+### ■Basic認証
+ユーザー名：test-user  
+パスワード：test1234
